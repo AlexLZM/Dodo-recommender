@@ -11,6 +11,8 @@ The user can click on the item he's intersted in and be redireced to the associa
 ## Backend design
 The backend is built upon python flask scripts, consists of functionalities including image uploading, similarity generation, database query/output, and user system.
 
+The database is hosted on AWS S3 and RDS servers, connected with boto3 and flask_alcamy API.
+
 ## Deployment
 The application is deployed to the AWS Elastic Beanstalk server via docker image.
 
