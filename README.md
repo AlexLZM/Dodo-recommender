@@ -6,6 +6,8 @@
 ## Introduction
 Dodo Recommender is a search engine for Vintage Luxury goods. Powered by our deep learning image feature extraction model, Dodo recommends similar items from online shops all over the world upon your uploaded image of a luxury item, in terms of style, pattern ,and category.
 
+The user can click on the item he's intersted in and be redireced to the associated external shop page.
+
 ## Backend design
 The backend is built upon python flask scripts, consists of functionalities including image uploading, similarity generation, database query/output, and user system.
 
