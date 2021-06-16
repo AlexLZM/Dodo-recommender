@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+<link rel="icon" href="{{ url_for('static',filename='assets/images/icon.png') }}">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Dodo | second hand luxury search engine.</title>
+<link rel='stylesheet' href="{{ url_for('static',filename='styles/css/woocommerce-layout.css') }}"  type='text/css' media='all'/>
+<link rel='stylesheet' href="{{ url_for('static',filename='styles/css/woocommerce-smallscreen.css') }}" type='text/css' media='only screen and (max-width: 768px)'/>
+<link rel='stylesheet' href="{{ url_for('static',filename='styles/css/woocommerce.css') }}" type='text/css' media='all'/>
+<link rel='stylesheet' href="{{ url_for('static',filename='styles/css/font-awesome.min.css') }}" type='text/css' media='all'/>
+<link rel='stylesheet' href="{{ url_for('static',filename='styles/style.css') }}" type='text/css' media='all'/>
+<link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Oswald:400,500,700%7CRoboto:400,500,700%7CHerr+Von+Muellerhoff:400,500,700%7CQuattrocento+Sans:400,500,700' type='text/css' media='all'/>
+<link rel='stylesheet' href="{{ url_for('static',filename='styles/css/easy-responsive-shortcodes.css') }}" type='text/css' media='all'/>
+</head>
+<body class="archive post-type-archive post-type-archive-product woocommerce woocommerce-page">
+<div id="page">
+	<div class="container">
+		<header id="masthead" class="site-header">
+		<div class="site-branding">
+			<h1 class="site-title"><a href="index.html" rel="home">Dodo</a></h1>
+			<h2 class="site-description">Find luxury second hand & vintage product by photos.</h2>
+		</div>
+		<nav id="site-navigation" class="main-navigation">
+		<button class="menu-toggle">Menu</button>
+		<a class="skip-link screen-reader-text" href="#content">Skip to content</a>
+		<div class="menu-menu-1-container">
+			<ul id="menu-menu-1" class="menu">
+				<li><a href="index.html">Home</a></li>
+				<li><a href="about.html">About</a></li>
+				<li><a href="shop.html">Shop</a></li>
+				<li><a href="login.html">Account</a></li>
+				<li><a href="contact.html">Contact</a></li>
+			</ul>
+		</div>
+		</nav>
+		</header>
+		<!-- #masthead -->
+		<div id="content" class="site-content">
+			<div id="primary" class="content-area column full">
+				<main id="main" class="site-main" role="main">
+				<p class="woocommerce-result-count">
+					 Showing 1–8 of 12 results
+				</p>
+				<form class="woocommerce-ordering" method="get">
+					<select name="orderby" class="orderby">
+						<option value="menu_order" selected="selected">Default sorting</option>
+						<option value="popularity">Sort by popularity</option>
+						<option value="rating">Sort by brand</option>
+						<option value="date">Sort by newness</option>
+						<option value="price">Sort by price: low to high</option>
+						<option value="price-desc">Sort by price: high to low</option>
+					</select>
+				</form>
+				<ul class="products">
+					
+					<li class="first product">
+					<a href={{ it1_dict.url }}>
+					<span class="onsale">Sale!</span>
+					<img src= "{{ it1 }}" alt="">
+					<h3>{{ it1_dict.item }}</h3>
+					<span class="price"><span class="amount">{{ it1_dict.price }}</span></span>
+					<span class="stock"><span class="string">{{ it1_dict.stock }}</span></span>
+					</li>
+
+
+					<li class="product">
+					<a href={{ it2_dict.url }}>
+					<span class="onsale">Sale!</span>
+					<img src= "{{ it2 }}" alt="">
+					<h3>{{ it2_dict.item }}</h3>
+					<span class="price"><span class="amount">{{ it2_dict.price }}</span></span>
+					<span class="stock"><span class="string">{{ it2_dict.stock }}</span></span>
+					</li>
+					
+					<li class="product">
+					<a href={{ it3_dict.url }}>
+					<span class="onsale">Sale!</span>
+					<img src= "{{ it3 }}" alt="">
+					<h3>{{ it3_dict.item }}</h3>
+					<span class="price"><span class="amount">{{ it3_dict.price }}</span></span>
+					<span class="stock"><span class="string">{{ it3_dict.stock }}</span></span>
+					</li>
+					
+					<li class="last product">
+					<a href={{ it4_dict.url }}>
+					<span class="onsale">Sale!</span>
+					<img src= "{{ it4 }}" alt="">
+					<h3>{{ it4_dict.item }}</h3>
+					<span class="price"><span class="amount">{{ it4_dict.price }}</span></span>
+					<span class="stock"><span class="string">{{ it4_dict.stock }}</span></span>
+					</li>
+					
+					<li class="first product">
+					<a href={{ it5_dict.url }}>
+					<span class="onsale">Sale!</span>
+					<img src= "{{ it5 }}" alt="">
+					<h3>{{ it5_dict.item }}</h3>
+					<span class="price"><span class="amount">{{ it5_dict.price }}</span></span>
+					<span class="stock"><span class="string">{{ it5_dict.stock }}</span></span>
+					</li>
+					
+					<li class="product">
+					<a href={{ it6_dict.url }}>
+					<span class="onsale">Sale!</span>
+					<img src= "{{ it6 }}" alt="">
+					<h3>{{ it6_dict.item }}</h3>
+					<span class="price"><span class="amount">{{ it6_dict.price }}</span></span>
+					<span class="stock"><span class="string">{{ it6_dict.stock }}</span></span>
+					</li>
+					
+					<li class="product">
+					<a href={{ it7_dict.url }}>
+					<span class="onsale">Sale!</span>
+					<img src= "{{ it7 }}" alt="">
+					<h3>{{ it7_dict.item }}</h3>
+					<span class="price"><span class="amount">{{ it7_dict.price }}</span></span>
+					<span class="stock"><span class="string">{{ it7_dict.stock }}</span></span>
+					</li>
+					
+					<li class="last product">
+					<a href={{ it8_dict.url }}>
+					<span class="onsale">Sale!</span>
+					<img src= "{{ it8 }}"alt="">
+					<h3>{{ it8_dict.item }}</h3>
+					<span class="price"><span class="amount">{{ it8_dict.price }}</span></span>
+					<span class="stock"><span class="string">{{ it8_dict.stock }}</span></span>
+					</li>
+					
+				</ul>
+				<nav class="woocommerce-pagination" role="navigation" aria-label="Pagination Navigation">
+				<ul class="page-numbers">
+					<li><span class="page-numbers current" href="/shop.html" aria-label="Current Page, Page 1" aria-current="true">1</span></li>
+					<li><a class="page-numbers" href="/shop.html" aria-label="Goto Page 2">2</a></li>
+					<li><a class="page-numbers" href="/shop.html" aria-label="Goto Page 3">3</a></li>
+					<li><a class="page-numbers" href="/shop.html" aria-label="Goto Page 4">4</a></li>
+				</ul>
+				</nav>
+				</main>
+				<!-- #main -->
+			</div>
+			<!-- #primary -->
+		</div>
+		<!-- #content -->
+	</div>
+	<!-- .container -->
+	<footer id="colophon" class="site-footer">
+	<div class="container">
+		<div class="site-info">
+			<h1 style="font-family: 'Herr Von Muellerhoff';color: #ccc;font-weight:300;text-align: center;margin-bottom:0;margin-top:0;line-height:1.4;font-size: 46px;">Moschino</h1>
+			<a target="blank" href="https://www.wowthemes.net/">&copy; Moschino - by WowThemes.net</a>
+		</div>
+	</div>
+	</footer>
+	<a href="#top" class="smoothup" title="Back to top"><span class="genericon genericon-collapse"></span></a>
+</div>
+<!-- #page -->
+<script src="{{ url_for('static',filename='styles/js/jquery.js') }}"></script>
+<script src="{{ url_for('static',filename='styles/js/plugins.js') }}"></script>
+<script src="{{ url_for('static',filename='styles/js/scripts.js') }}"></script>
+<script src="{{ url_for('static',filename='styles/js/masonry.pkgd.min.js') }}"></script>
+<script src="{{ url_for('static',filename='styles/js/page.js') }}"></script>
+</body>
+</html>
