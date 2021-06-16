@@ -16,11 +16,11 @@ The application is deployed to the AWS Elastic Beanstalk server via docker image
 ### Uploaded image
 ![Clustering of ring shape data](./images/download.jpeg?raw=true)
 
-### recommendations
+### Recommendations
 ![Clustering of ring shape data](./images/2751623817766_.pic_hd.jpg?raw=true)
 
 ## Try your own image！
-#### Dodo team members：
+## Dodo team members：
 <a href="https://www.linkedin.com/in/april-qianyun-li-a164561a9/">Qianyun (April) Li</a>
 
 <a href="https://www.linkedin.com/in/zhimin-alex-lyu/">Zhimin (Alex) Lyu</a>
