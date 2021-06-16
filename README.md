@@ -1,6 +1,6 @@
 # Dodo Recommender
 
-## The web application website:
+## Web application website:
 <a href="http://dodo-recommender.us-west-2.elasticbeanstalk.com/">http://dodo-recommender.us-west-2.elasticbeanstalk.com/</a>
 
 ## Introduction
