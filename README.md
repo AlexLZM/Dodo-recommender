@@ -9,7 +9,7 @@ Dodo Recommender is a search engine for Vintage Luxury goods. Powered by our dee
 The user can click on the item he's intersted in and be redireced to the associated external shop page.
 
 ## Backend design
-The backend is built upon python flask scripts, consists of functionalities including image uploading, similarity generation, database query/output, and user system.
+The backend is built upon Python Flask scripts, consisting functionalities including image uploading, similarity generation, database query/output, and user system.
 
 The database is hosted on AWS S3 and RDS servers, connected with boto3 and flask_alcamy API.
 
