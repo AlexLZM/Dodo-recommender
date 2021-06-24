@@ -1,0 +1,97 @@
+
+{% extends "base.html" %}
+
+{% block class %}
+<body class="archive post-type-archive post-type-archive-product woocommerce woocommerce-page"></body>
+{% endblock %}
+
+{% block body%}
+		<!-- #masthead -->
+		<div id="content" class="site-content">
+			<div id="primary" class="content-area column full">
+				<main id="main" class="site-main" role="main">
+				<p class="woocommerce-result-count">
+					 {{pagination.info|safe}}
+				</p>
+				<form class="woocommerce-ordering" method="get">
+					<input type="text" pattern="[0-9]+" name="lower" size="10" placeholder="Min price"> -
+					<input type="text" pattern="[0-9]+" name="upper" size="10" placeholder="Max price">
+					<select name="filter" class="orderby" onchange='if(this.value != "menu_order") { this.form.submit(); }'>
+						<option value="menu_order" selected="selected">Filter</option>
+						<option value="No">Price Filter Only</option>
+						<option value="bags">Bags</option>
+						<option value="clothing">Clothing</option>
+						<option value="stock">In Stock</option>
+						<!-- <option value="price">Sort by price: low to high</option>
+						<option value="price-desc">Sort by price: high to low</option> -->
+					</select>
+				</form>
+				<ul class="products">
+					<li class="product">
+					<h3>YOUR PICTURE:</h3>
+					<center><img src= "{{ user_pic }}" ></center>
+					</li>
+
+					{% for item_dict in pagination_items %}
+					{% if loop.index%4 == 1 %}
+					<li class="first product">
+					<a href={{ item_dict.url }}>
+					<span class="onsale">{{ item_dict.similarity }}</span>
+					<img src= "{{ item_dict.img }}" alt="">
+					<h3>{{ item_dict.item }}</h3>
+					
+					{% if item_dict.currency != "USD" %}
+					<span class="price"><span class="amount">{{ item_dict.price }} / {{ item_dict.usd_price }}</span></span>
+					{% else %}
+					<span class="price"><span class="amount"></span>{{ item_dict.price }}</span>
+					{% endif %}
+
+					<span class="stock"><span class="string">{{ item_dict.stock }}</span></span>
+					</li>
+
+					{% elif loop.index%4 == 0 %}
+					<li class="last product">
+					<a href={{ item_dict.url }}>
+					<span class="onsale">{{ item_dict.similarity }}</span>
+					<img src= "{{ item_dict.img }}"alt="">
+					<h3>{{ item_dict.item }}</h3>
+					{% if item_dict.currency != "USD" %}
+					<span class="price"><span class="amount">{{ item_dict.price }} / {{ item_dict.usd_price }}</span></span>
+					{% else %}
+					<span class="price"><span class="amount"></span>{{ item_dict.price }}</span>
+					{% endif %}
+
+					<span class="stock"><span class="string">{{ item_dict.stock }}</span></span>
+					</li>
+
+					{% else %}
+					<li class="product">
+					<a href={{ item_dict.url }}>
+					<span class="onsale">{{ item_dict.similarity }}</span>
+					<img src= "{{ item_dict.img  }}" alt="">
+					<h3>{{ item_dict.item }}</h3>
+					{% if item_dict.currency != "USD" %}
+					<span class="price"><span class="amount">{{ item_dict.price }} / {{ item_dict.usd_price }}</span></span>
+					{% else %}
+					<span class="price"><span class="amount"></span>{{ item_dict.price }}</span>
+					{% endif %}
+
+					<span class="stock"><span class="string">{{ item_dict.stock }}</span></span>
+					</li>
+					
+					{% endif %}
+					{% endfor %}
+				</ul>
+				
+				<nav class="woocommerce-pagination">
+					{{ pagination.links|safe  }}
+				</nav>
+				</main>
+				<!-- #main -->
+			</div>
+			<!-- #primary -->
+		</div>
+		<!-- #content -->
+	</div>
+	<!-- .container -->
+	{% endblock %}

@@ -1,0 +1,37 @@
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+.boxalert {
+  padding: 10px;
+  background-color: #FFF8D7;
+  color: #8E8E8E;
+  opacity: 1;
+  transition: opacity 0.6s; /* 600ms to fade out */
+}
+
+.closebtn {
+  margin-left: 15px;
+  color: #8E8E8E;
+  font-weight: bold;
+  float: right;
+  font-size: 22px;
+  line-height: 20px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.closebtn:hover {
+  color: black;
+}
+</style>
+
+
+{% with messages = get_flashed_messages() %}
+	{% if messages %}
+		<div class = "boxalert">
+			<span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+		{% for message in messages%}
+			{{ message }}
+		{% endfor %}
+		</div>
+	{% endif%}
+{% endwith %}

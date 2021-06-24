@@ -15,4 +15,5 @@ timm
 tqdm
 wget
 xlrd
+flask-paginate
 

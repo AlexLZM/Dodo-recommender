@@ -42,17 +42,6 @@ def load_user(id):
    return Users.query.get(int(id))
 
 
-# class RegistrationForm(FlaskForm):
-#     username = StringField('Username:', validators=[DataRequired()])
-#     email = StringField('Email:', validators=[DataRequired()])
-#     password = PasswordField('Password:', validators=[DataRequired()])
-#     submit = SubmitField('Submit')
-
-# class LogInForm(FlaskForm):
-#     username = StringField('Username:', validators=[DataRequired()])
-#     password = PasswordField('Password:', validators=[DataRequired()])
-    # submit = SubmitField('Login')
-
 
 
 # ----------------------------Uploads--------------------------
@@ -83,10 +72,12 @@ class Candidates(db.Model):
     stock = db.Column(db.Integer, nullable=True)
     condition = db.Column(db.String(100), nullable=True)
     authentication = db.Column(db.String(100), nullable=True)
+    org_cat = db.Column(db.String(100), nullable=True)
+    pred_cat = db.Column(db.String(100), nullable=True)
     
     def __init__(self, name, source, designer, image_path, embedding,
                  original_price, currency, price_usd, url, stock, 
-                 condition, authentication):
+                 condition, authentication, org_cat, pred_cat):
         self.name = name
         self.source = source
         self.designer = designer
@@ -99,6 +90,8 @@ class Candidates(db.Model):
         self.stock = stock
         self.condition = condition
         self.authentication = authentication
+        self.org_cat = org_cat
+        self.pred_cat = pred_cat
         
 # ----------------------------User Log--------------------------
 class UserLog(db.Model):

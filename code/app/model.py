@@ -40,14 +40,10 @@ class DFDataset(Dataset):
     def __getitem__(self, index):
         row = self.arr[index]
         image_name = row[1].split('/')[-1]
-        # print(f'image_name: {image_name}')
         file_obj = s3.get_object(Bucket=img_bucket, Key=image_name)
-        # reading the file content in bytes
         file_content = file_obj["Body"].read()
-        # print(len(file_content))
-        # print(type(file_content))
+
         np_array = np.fromstring(file_content,dtype=np.uint8)
-        # decoding array
         image_np = cv2.imdecode(np_array, cv2.IMREAD_COLOR)
         img = cv2.cvtColor(image_np, cv2.COLOR_BGR2RGB)
         img = img.astype(np.float32)
@@ -118,12 +114,10 @@ class MetricLearningModel(nn.Module):
         features = self.bn1(features)
         features = self.dropout(features)
         features = features.view(features.size(0), -1)
-        # print(features.shape)
         features = self.fc1(features)
         features = self.bn2(features)
         features = F.normalize(features)
-#         if labels is not None:
-#             return self.margin(features, labels)
+
         return features
 
 
@@ -149,48 +143,14 @@ def generate_test_features(test_loader):
     
     return FEAS
 
-a = np.array([1,2,3])
-np.save('a.npy', a)
 model = MetricLearningModel(128, 5555)
 model.to(device)
 model.load_state_dict(torch.load('dense121_feature_extractor3.pth',map_location=torch.device('cpu')))
 if os.path.exists('features.npy'):
 	features = np.load('features.npy')
 	print('loaded precomputed embeddings')
-print('root is:')
-print(root := (os.path.abspath(os.path.dirname(__file__))))
 
-# else:
-# 	test_dataset = DFDataset(arr, 'test', transforms_valid)
-# 	img_list = db.session.query(Candidates.id, Candidates.image_path).all()
-# 	ACCESS_ID='AKIA5KPBA67LLWEDKI7J'
-# 	ACCESS_KEY='1T3S3YSVw5MLLpuoe+mmrsqF2+KgO5WlOg6+Edf9' 
-# 	s3 = boto3.client('s3',
-#          aws_access_key_id=ACCESS_ID,
-#          aws_secret_access_key= ACCESS_KEY)
-# 	img_bucket = "deep-fashion-pic-resources"
-# 	filtered_list = []
-# 	print(f'filtering invalid urls')
-# 	for row in tqdm(img_list):
-# 	    image_name = row.image_path.split('/')[-1]
-# 	    try:
-# 	        file_obj = s3.get_object(Bucket=img_bucket, Key=image_name)
-# 	    except:
-# 	        continue
-# 	    filtered_list.append(row)
 
-# 	print('url filtered')
-# 	arr = np.array(filtered_list)
-# 	print(f'query successful, size {arr.shape[0]}')
-
-# 	print('model loaded')
-# 	test_dataloader = DataLoader(test_dataset, batch_size=1, shuffle=False, num_workers=0)
-
-# 	features = generate_test_features(test_dataloader)
-# 	np.save('features.npy', features)
-# 	root = (os.path.abspath(os.path.dirname(__file__)))
-#   np.save(root+'/arr.npy', arr)
-# 	print('feature calculation done')
 
 
 

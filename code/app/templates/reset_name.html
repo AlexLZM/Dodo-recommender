@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+{% block class %}
+<body class="home page page-template page-template-template-portfolio page-template-template-portfolio-php"></body>
+{% endblock %}
+
+{% block body%}
+{% include "flash.html" %}
+		<!-- #masthead -->
+		<div id="content" class="site-content">
+			<div id="primary" class="content-area column two-thirds single-portfolio">
+				<main id="main" class="site-main">
+					<div class="widget-area">
+						<aside class="widget">
+							<h4 class="widget-title">Login</h4>
+							<form class="wpcf7" method="post" action="" id="contactform">
+								<div class="form">
+									<p><input type="text" name="fname" placeholder="First Name *" required></p>
+									<p><input type="text" name="lname" placeholder="Last Name *" required></p>
+									<p><input type="text" name="mobile" placeholder="New Mobile number *" required></p>
+									<input type="submit" id="submit" class="clearfix btn" value="Submit">
+								</div>
+							</form>
+						</aside>
+					</div>
+				</main>
+				<!-- #main -->
+			</div>
+			<!-- #primary -->
+		</div>
+		<!-- #content -->
+	</div>
+	<!-- .container -->
+	{% endblock %}
