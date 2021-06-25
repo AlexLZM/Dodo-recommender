@@ -10,6 +10,7 @@
 {% endblock %}
 
 {% block body%}
+{% include "flash.html" %}
 		<!-- #masthead -->
 		<div id="content" class="site-content">
 			<div id="primary" class="content-area column full">
@@ -19,7 +20,7 @@
 					
 				<form enctype="multipart/form-data" method="post" action="{{ url_for('upload_file') }}" id="searchform" style="text-align:center">
 					<div class="form" style="text-align:center">
-						<p style="text-align:center"><input type="file" name="file" accept="image/png, image/jpeg"></p>
+						<p style="text-align:center"><input type="file" name="file" accept="image/png, image/jpeg"> or     <input type="url" name="url" placeholder="URL..."></p>
 						<input type="submit" id="submit" class="clearfix btn" value="Start" style="text-align:center">
 					</div>
 				</form>

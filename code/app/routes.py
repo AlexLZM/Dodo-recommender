@@ -14,6 +14,46 @@ import pandas as pd
 from tqdm import tqdm
 import time
 from flask import session
+import requests
+import mimetypes
+from io import BytesIO
+import magic
+
+# keys deleted for privacy reason
+ACCESS_ID='' 
+ACCESS_KEY=''
+API = '' 
+
+VALID_IMAGE_EXTENSIONS = [
+    ".jpg",
+    ".jpeg",
+    ".png",
+    ".gif",
+]
+
+
+VALID_IMAGE_MIMETYPES = [
+    "image"
+]
+
+
+
+def get_mimetype(fobject):
+    mime = magic.Magic(mime=True)
+    mimetype = mime.from_buffer(fobject.read(1024))
+    fobject.seek(0)
+    return mimetype
+
+def valid_image_mimetype(fobject):
+    mimetype = get_mimetype(fobject)
+    if mimetype:
+        return mimetype.startswith('image')
+    else:
+        return False
+
+
+
+
 
 def read_img(img_path, transform=None):
     img = cv2.imread(img_path)
@@ -52,7 +92,7 @@ def contact():
 
         return redirect(url_for('contact'))
 
-    return render_template('contact.html', api='') # key deleted for privacy reason
+    return render_template('contact.html', api=API)
 
 ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg'}
 def allowed_file(filename):
@@ -117,8 +157,52 @@ def upload_file():
         return redirect(url_for('index'))
 
     file = request.files['file']
-
+    
     if file.filename == '':
+        url = request.form['url']
+        if url is not None and url is not '':
+            
+            img_bytes = requests.get(url).content
+            fobject = BytesIO(img_bytes)
+            if not valid_image_mimetype(fobject):
+                flash('Not a valid image url')
+                return redirect(url_for('index'))
+
+            filename = str(time.time()) + '.img'
+            # save img to disk
+            path = os.path.join(application.config['UPLOAD_FOLDER'], filename)
+            with open(path, 'wb') as f:
+                f.write(img_bytes)
+
+            # upload img to s3
+            
+            s3_client = boto3.client('s3',
+             aws_access_key_id=ACCESS_ID,
+             aws_secret_access_key= ACCESS_KEY)
+
+            s3_client.upload_file(path, classes.upload_img_bucket, filename)
+            
+            test_img = read_img(path, transform=transforms_valid)
+            feature_model.eval()
+            test_img_fea = feature_model(test_img).detach().numpy()
+            session['user_img'] = path
+            session['test_img_fea'] = test_img_fea.tolist()
+            img_path = classes.upload_img_bucket + "/" + path.split('/')[-1]
+            upload = classes.Uploads(image_path=img_path, embedding=list(test_img_fea.reshape(-1,).astype(np.float64)))
+            db.session.add(upload)
+            db.session.commit()
+            return redirect(url_for('result'))
+            
+
+            
+        else:
+            flash('No selected file and url is empty')
+            return redirect(url_for('index'))
+
+
+
+
+
         flash('No selected file')
         return redirect(url_for('index'))
     if file and allowed_file(file.filename):
@@ -127,8 +211,7 @@ def upload_file():
         path = os.path.join(application.config['UPLOAD_FOLDER'], filename)
         file.save(path)
         # upload img to s3
-        ACCESS_ID='' # key deleted for privacy reason
-        ACCESS_KEY='' # key deleted for privacy reason
+        
         s3_client = boto3.client('s3',
          aws_access_key_id=ACCESS_ID,
          aws_secret_access_key= ACCESS_KEY)
